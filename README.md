@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# ex07_css_nayeonkim
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 퀴즈 기능 소개
 
-## Available Scripts
+### 1. Quiz 1
+<img width="1650" height="521" alt="image" src="https://github.com/user-attachments/assets/d0fc495a-8d79-43cd-bdd7-179536258cc3" />
 
-In the project directory, you can run:
+### 2,3. Quiz 2,3
+#### 로그인 후
 
-### `yarn start`
+<img width="1673" height="920" alt="image" src="https://github.com/user-attachments/assets/adb70e4a-2b8f-4ff8-b8cd-7c2688b980bc" />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### 로그아웃 후
+<img width="1661" height="905" alt="image" src="https://github.com/user-attachments/assets/959f0b1a-a2d8-4309-9601-73b69a4c6b84" />
 
-### `yarn test`
+### 4. Quiz 4
+<img width="1668" height="542" alt="image" src="https://github.com/user-attachments/assets/6f8bad75-1be8-438f-a072-715af7e3e678" />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+#### 가입 후 로그인으로 이동
+<img width="1655" height="580" alt="image" src="https://github.com/user-attachments/assets/cff8bec7-2f41-4248-9da8-acd3f0b9d79e" />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 5. Quiz 5
+<img width="1670" height="672" alt="image" src="https://github.com/user-attachments/assets/b2205a6d-2af5-4f55-b731-713de4ccdc08" />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+회원가입 한 계정 정보도 들어와 있음.
 
-### `yarn eject`
+### 6. Quiz 6
+<img width="1610" height="777" alt="image" src="https://github.com/user-attachments/assets/c8437dc7-438b-49c2-addd-36bd6535fce3" />
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+로그인 되어있을 시, 개인 정보 페이지로 넘어갈 수 있음
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img width="1653" height="601" alt="image" src="https://github.com/user-attachments/assets/f4f2b45a-bb43-42fe-b853-08633c9863b3" />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+로그인 되어있지 않을 때 로그인 페이지로 이동
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 7. Quiz 7
+삭제 전
+<img width="1672" height="778" alt="image" src="https://github.com/user-attachments/assets/625c9599-6972-4051-80aa-3cd7e39c01a3" />
 
-## Learn More
+삭제 후
+<img width="1662" height="597" alt="image" src="https://github.com/user-attachments/assets/71ae59e3-49dc-4784-9292-612b4fc71832" />
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+삭제 후 LIST 페이지로 돌아오며, 삭제한 유저의 계정이 LIST에 보이지 않음
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 8. Quiz 8
+수정 버튼 클릭 전
+<img width="1620" height="773" alt="image" src="https://github.com/user-attachments/assets/e34ce933-c9b9-4ce5-b0d2-15d85ec69719" />
 
-### Code Splitting
+수정 후
+<img width="1617" height="780" alt="image" src="https://github.com/user-attachments/assets/7bdc31db-d795-4754-acdb-48589dc863d6" />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+id값이 변해도 해당 개인 정보 페이지에 오류 없이 남아 있음
 
-### Analyzing the Bundle Size
+<img width="1510" height="562" alt="image" src="https://github.com/user-attachments/assets/fd8825a6-82c9-4f02-a6ed-066b4f140a33" />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+LIST에서도 수정된 모습 확인가능
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `yarn build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
