@@ -24,7 +24,7 @@ const RegBtn = styled.button`
 `; 
 
 
-function RegCom({id, pwd, role, onChange, onSubmit}) {
+function RegCom({username, password, role, onChange, onSubmit}) {
     return (
         <>
             <StyleContentBlock>
@@ -34,8 +34,8 @@ function RegCom({id, pwd, role, onChange, onSubmit}) {
                     </ProductTitle>
 =                   <div>
                         <StyledForm onSubmit={onSubmit}>
-                            <StyledInput value={id} name="id" onChange={onChange} placeholder="input username"></StyledInput><br></br>
-                            <StyledInput value={pwd} name="pwd" onChange={onChange} placeholder="input password"></StyledInput><br></br>
+                            <StyledInput value={username} name="username" onChange={onChange} placeholder="input username"></StyledInput><br></br>
+                            <StyledInput value={password} name="password" onChange={onChange} placeholder="input password"></StyledInput><br></br>
                             <StyledInput value={role} name="role" onChange={onChange} placeholder="input role"></StyledInput><br></br>
                             <div style={{"textAlign" : "left", "marginTop" : "10px"}}>
                                 <RegBtn>REGISTER</RegBtn>

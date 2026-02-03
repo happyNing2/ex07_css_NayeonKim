@@ -31,7 +31,7 @@ const StyleNav = styled.nav`
 `;
 
 function HeaderCom() {
-    const {id, isLoggedIn} = useSelector(state => {
+    const {username, isLoggedIn} = useSelector(state => {
         return state.auth;
     })
     const dispatch = useDispatch();
@@ -55,7 +55,7 @@ function HeaderCom() {
                             <ul>
                                 {isLoggedIn 
                                     ? <>
-                                    <li>{id} 님 &nbsp;</li>
+                                    <li>{username} 님 &nbsp;</li>
                                     <li><Link to="/logout" onClick={onLogout}>로그아웃</Link></li>
                                     </>
                                     : <>

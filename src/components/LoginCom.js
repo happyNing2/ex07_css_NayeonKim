@@ -30,7 +30,7 @@ const LoginBox = styled.div`
         }
     }
 `;
-function LoginCom({onChange, onSubmit, id, pwd}) {
+function LoginCom({onChange, onSubmit, username, password}) {
     return (
         <>
             <AuthBlock>
@@ -39,8 +39,8 @@ function LoginCom({onChange, onSubmit, id, pwd}) {
                         <Link to="/">춘봉 이동</Link>
                     </div>
                     <StyleForm onSubmit={onSubmit}>
-                        <StyledInput value={id} name="id" onChange={onChange} placeholder="input username"></StyledInput><br></br>
-                        <StyledInput value={pwd} name="pwd" onChange={onChange} placeholder="input password"></StyledInput>
+                        <StyledInput value={username} name="username" onChange={onChange} placeholder="input username"></StyledInput><br></br>
+                        <StyledInput value={password} name="password" onChange={onChange} placeholder="input password"></StyledInput>
                         <StyledButton width="100%" background={["178, 235, 244", 0.5]} >로그인</StyledButton>
                     </StyleForm>
                 </LoginBox>

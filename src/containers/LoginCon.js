@@ -10,7 +10,7 @@ function LoginCon() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
-    const {id, pwd} = useSelector(state => {
+    const {username, password} = useSelector(state => {
         return state.input.login;
     })
 
@@ -21,18 +21,25 @@ function LoginCon() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        console.log("login submit : ", id, pwd);
-        const result = await dispatch(loginThunk({id : id, password : pwd}))
-        console.log("login payload result ", result.payload);
-        if (result.payload.result === 0) {
-            dispatch(login({id : id}));
+        console.log("login submit : ", username, password);
+        const result = await dispatch(loginThunk({username : username, password : password}))
+        // console.log("login payload result ", result.payload);
+        // if (result.payload.result === 0) {
+        //     dispatch(login({username : username}));
+        //     navigate("/");
+        // }
+        if (result.payload === true) {
+            dispatch(login({username : username}));
             navigate("/");
+        }
+        else {
+            alert("잘못된 username 혹은 password");
         }
     }
     return (
         <>
             <HeaderCom />
-            <LoginCom onChange={onChange} onSubmit={onSubmit} id={id} pwd={pwd}/>
+            <LoginCom onChange={onChange} onSubmit={onSubmit} username={username} password={password}/>
         </>
     )
 }

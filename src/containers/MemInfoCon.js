@@ -1,9 +1,9 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import HeaderCom from "../components/common/HeaderCom";
 import MemInfoCom from "../components/MemInfoCom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { memberDeleteThunk, memberInfoThunk, memberModifyThunk } from "../service/authThunk";
+import { memberDeleteThunk, memberInfoThunk, memberModifyThunk, memberThunk } from "../service/authThunk";
 import memberDataSlice from "../redux/memberDataSlice";
 // import inputSlice from "../redux/inputSlice";
 
@@ -19,6 +19,7 @@ function MemInfoCon(){
     })
     
     const user_id = params.get("id");
+    // const {username} = useParams();
     // console.log("id : ", user_id);
     useEffect( () => {
         // console.log("use effect");
@@ -43,10 +44,10 @@ function MemInfoCon(){
         navigate("/list");
     }  
 
-    const modifyMem = (e) => {
+    const modifyMem = async (e) => {
         e.preventDefault();
         // console.log("button user_id, data : ", user_id, data);
-        dispatch(memberModifyThunk([user_id, data]));
+        await dispatch(memberModifyThunk({id : user_id, user : data}));
         navigate("/memberinfo?id=" + data["id"]);
         // navigate("/list");
     }

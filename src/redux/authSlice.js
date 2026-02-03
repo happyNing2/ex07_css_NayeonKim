@@ -4,7 +4,7 @@ import { createLoadingReducers } from "./commonLoadingHandlers";
 
 const initialState = {
     isLoggedIn : false, 
-    id : null,
+    username : null,
     loading : false, error : null, result : 0
 }
 const savedAuth = sessionStorage.getItem("auth");
@@ -14,7 +14,7 @@ const authSlice = createSlice({
     reducers : {
         login : (state, action) => {
             state.isLoggedIn = true;
-            state.id = action.payload.id;
+            state.username = action.payload.username;
             // console.log("login authSlice", state);
             sessionStorage.setItem("auth", JSON.stringify({...state}))
         },
@@ -34,8 +34,8 @@ const authSlice = createSlice({
 
         builder
         .addCase(regThunk.fulfilled, (state, action) => {
-            console.log("regThunk action : ", action.payload)
-            console.log("regTHunk state : ", state);
+            // console.log("regThunk action : ", action.payload)
+            // console.log("regTHunk state : ", state);
             state.loading = false;
             state.error = null
         })

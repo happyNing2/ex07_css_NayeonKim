@@ -3,8 +3,8 @@ import {createSlice} from "@reduxjs/toolkit";
 const inputSlice = createSlice({
     name : "input",
     initialState : {
-        login : {id : "", pwd : ""},
-        register : {id : "", pwd : "", role : ""}
+        login : {username : "", password : ""},
+        register : {username : "", password : "", role : ""}
     },
     reducers : {
         changeinput : (state, action) => {

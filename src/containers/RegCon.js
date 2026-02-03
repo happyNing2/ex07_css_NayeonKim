@@ -9,30 +9,34 @@ function RegCon() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const {id, pwd, role} = useSelector(state => {
+    const {username, password, role} = useSelector(state => {
         return state.input.register;
     })
 
     const onChange = (e) => {
         const {name, value} = e.target;
         dispatch(inputSlice.actions.changeinput({name, value, form : "register"}));
-        console.log("reg onchange input : ", id, pwd, role)
+        // console.log("reg onchange input : ", id, pwd, role)
     }
 
     const onSubmit = async(e) => {
         e.preventDefault();
         // console.log("register submit : ", id, pwd, role);
-        const result = await dispatch(regThunk({id:id, password : pwd, role : role}))
-        // console.log("regcon result ", result);
-        if (result.payload.result === 0)
-            navigate("/login")
+        const result = await dispatch(regThunk({username : username, password : password, role : role}))
+        // console.log("regcon result ", result.payload);
+        if (result.payload === true)
+            navigate("/login");
         else
-            alert("회원가입 실패")
+            alert("회원가입 실패");
+        // if (result.payload.result === 0)
+        //     navigate("/login")
+        // else
+        //     alert("회원가입 실패")
     }
     return (
         <>
             <HeaderCom />
-            <RegCom onChange={onChange} onSubmit={onSubmit} id={id} pwd={pwd} role={role} />
+            <RegCom onChange={onChange} onSubmit={onSubmit} username={username} password={password} role={role} />
         </>
     )
 }

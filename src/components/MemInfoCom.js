@@ -53,7 +53,7 @@ function MemInfoCom({data, onChange, deleteMem, modifyMem}) {
                         <InfoBox>
                             <form onSubmit={modifyMem}>
                                 {
-                                    data && Object.keys(data).map ( key => (
+                                    data && Object.keys(data).slice(1).map ( key => (
                                         <InputWrap>
                                             <StyledSpan>{key}</StyledSpan><br></br>
                                             <StyledSpan>-</StyledSpan>

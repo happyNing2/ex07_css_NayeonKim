@@ -7,7 +7,7 @@ const memberDataSlice = createSlice({
     name : "member",
     initialState : {
         list : {data: null, loading : null, error : null},
-        modify : {id : "", pwd : "", role : ""}
+        modify : {id : "", username : "", password : "", role : ""}
     },
     reducers : {
         changeinput : (state, action) => {
@@ -18,11 +18,12 @@ const memberDataSlice = createSlice({
     extraReducers : (builder) => {
         builder
         .addCase(memberThunk.fulfilled, (state, action) =>{
-            // console.log("memberdataslice action.payload", action.payload);
+            // console.log("memberdataslice action.payload1", action.payload);
             
-            state.data = action.payload.data
+            state.list.data = action.payload;
             state.loading = false;
             state.error = null;
+            // console.log("memberdataslice state", state.list.data);
         })
         createLoadingReducers(builder, memberThunk);
 
