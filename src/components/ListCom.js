@@ -17,6 +17,18 @@ const MemListTr = styled.tr`
     
 `;
 
+const PagenUl = styled.ul`
+    margin : auto;
+    text-align : center;
+    display : flex;
+    width : 400px;
+    margin-top : 10px;
+`
+const PageLi = styled.li`
+    margin : auto;
+    text-align :center;
+`
+
 function ListCom({memberList}) {
     return (
         <>
@@ -35,7 +47,7 @@ function ListCom({memberList}) {
                                 </MemListTr>
                             </thead>
                             <tbody>
-                                {memberList && memberList.map( d=> (
+                                {memberList && memberList['list'].map( d=> (
                                     <MemListTr id={d.id} >
                                         <td><Link to={"/memberinfo?id=" + d.id}>{d.username}</Link></td>
                                         {/* <td><Link to={"/memberinfo/" + d.id}>{d.username}</Link></td> */}
@@ -46,6 +58,22 @@ function ListCom({memberList}) {
                                 )}
                             </tbody>
                         </MemListTable>
+                        <PagenUl>
+                            {memberList && 
+                                Array.from(
+                                    {length : memberList.totalPages},
+                                    (_, idx) => (
+                                        <PageLi key={idx+1}>
+                                            <Link to={"?start=" + idx}>{idx + 1}</Link>
+                                        </PageLi>
+                                    )
+                                )
+                            }
+                            {memberList &&
+                                <PageLi>( {memberList['currentPage'] + 1} / {memberList['totalPages']} )</PageLi>
+                            }
+                            
+                        </PagenUl>
                     </div>
 
                 </StyleContentWrap>

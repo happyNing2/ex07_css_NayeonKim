@@ -52,8 +52,18 @@ function MemInfoCom({data, onChange, deleteMem, modifyMem}) {
                     <div>
                         <InfoBox>
                             <form onSubmit={modifyMem}>
-                                {
+                                {/* {
                                     data && Object.keys(data).slice(1).map ( key => (
+                                        <InputWrap>
+                                            <StyledSpan>{key}</StyledSpan><br></br>
+                                            <StyledSpan>-</StyledSpan>
+                                            <StyledInput name={key} value={data[key]} onChange={onChange}></StyledInput>
+                                            <hr></hr>
+                                        </InputWrap>
+                                    ))
+                                } */}
+                                {
+                                    data && ["username", "password", "role"].map ( key => (
                                         <InputWrap>
                                             <StyledSpan>{key}</StyledSpan><br></br>
                                             <StyledSpan>-</StyledSpan>

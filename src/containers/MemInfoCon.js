@@ -38,9 +38,9 @@ function MemInfoCon(){
     }
 
     //onSubmit
-    const deleteMem = (e) => {
+    const deleteMem = async (e) => {
         e.preventDefault();
-        dispatch(memberDeleteThunk(data['id']));
+        await dispatch(memberDeleteThunk(data['id']));
         navigate("/list");
     }  
 
