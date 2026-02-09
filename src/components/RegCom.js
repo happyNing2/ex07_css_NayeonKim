@@ -24,7 +24,7 @@ const RegBtn = styled.button`
 `; 
 
 
-function RegCom({username, password, role, onChange, onSubmit}) {
+function RegCom({username, password, role, onChange, onSubmit, onFileChange}) {
     return (
         <>
             <StyleContentBlock>
@@ -37,6 +37,7 @@ function RegCom({username, password, role, onChange, onSubmit}) {
                             <StyledInput value={username} name="username" onChange={onChange} placeholder="input username"></StyledInput><br></br>
                             <StyledInput value={password} name="password" onChange={onChange} placeholder="input password"></StyledInput><br></br>
                             <StyledInput value={role} name="role" onChange={onChange} placeholder="input role"></StyledInput><br></br>
+                            <StyledInput type="file" name="file" onChange={onFileChange}></StyledInput> 
                             <div style={{"textAlign" : "left", "marginTop" : "10px"}}>
                                 <RegBtn>REGISTER</RegBtn>
                             </div>

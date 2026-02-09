@@ -9,7 +9,7 @@ import { useSearchParams } from "react-router-dom";
 function ListCon() {
     const dispatch = useDispatch();
     const [params] = useSearchParams();
-    const start = params.get("start");
+    const start = params.get("start") ? params.get("start") : 0;
     useEffect( ()=> {
         // dispatch(memberThunk("mem"))
         dispatch(memberThunk(start))
@@ -18,7 +18,7 @@ function ListCon() {
     const memberList = useSelector((state) => {
         // console.log("listcon state : ", state.member.data['data'])
         // console.log("listcon member : ", state.member);
-        console.log("listcon member.list : ", state.member.list);
+        // console.log("listcon member.list : ", state.member.list);
         return state.member.list.data;
     })
 

@@ -42,40 +42,28 @@ export const loginThunk = createAsyncThunk(
 export const regThunk = createAsyncThunk(
     "regThunk",
     async (user) => {
-        const formData = new URLSearchParams();
-        formData.append("id", 4);
+        // const formData = new URLSearchParams();
+        const formData = new FormData();
+        
         Object.entries(user).forEach(([key, value]) => {
             formData.append(key, value);
         });
-        // console.log("reg formData : ", formData.toString());
+        console.log("reg formData : ", formData.toString());
+        console.log("reg formData user : ", user);
         
         const res = await fetch(
             path + "members",
             {
                 method : "post",
-                headers : {
-                    "Content-Type" : "application/x-www-form-urlencoded"
-                },
+                // headers : {
+                //     "Content-Type" : "application/x-www-form-urlencoded"
+                // },
                 body : formData
             }
         )
-        // console.log("res ; ", res);
+
         return res.ok;
-        // const past_num = data_set.length;
-        // // id 존재하는지 확인
-        // const data = data_set.filter(data => data.id === user.id)[0];
-        // // console.log("regThunk filtered data", data);
-        // // console.log("reThunk data undefined?", typeof data == "undefined" );
-        // if (typeof data === "undefined") {// 기존에 데이터가 없다면 새로
-        //     data_set = data_set.concat([{id : user.id, password : user.password, role : user.role}])
-        //     // console.log("data_set after reg Thunk : ", data_set)
-        //     const now_num = data_set.length;
-        //     if (past_num < now_num )
-        //         return await {result : 0, id : user.id, password : user.password, role : user.role};
-        //     else 
-        //         return 1;
-        // }
-        // return 1;
+
     }
 )
 
@@ -83,6 +71,7 @@ export const regThunk = createAsyncThunk(
 export const memberThunk = createAsyncThunk(
     "memberThunk",
     async (start) => {
+        console.log("memberThunk start : " + start)
         const res = await fetch(path + "members?start=" + start, {method:"get"});
         const data = await res.json();
         // console.log("memberThunk : " +res.json());
@@ -107,12 +96,13 @@ export const memberInfoThunk = createAsyncThunk(
 
 export const memberDeleteThunk = createAsyncThunk(
     "memeberDeleteThunk",
-    async (id) => {
+    async (user) => {
         
-        // console.log("memberDeleteTHunk data : ", data_set);
+        console.log("memberDeleteTHunk data : ",user);
         // return await data_set;
 
-        const res = await fetch(path + "members/" + id, {method:"delete"});
+        const res = await fetch(path + "members/" + user.id, {method:"delete", body : user.fileName});
+        // console.log("memberDeleteThunk res : ", res );
         return res.json();
 
     }
@@ -120,21 +110,23 @@ export const memberDeleteThunk = createAsyncThunk(
 
 export const memberModifyThunk = createAsyncThunk(
     "memberModifyThunk",
-    async ({id, user}) => {
+    async ({id, user, file}) => {
         
-        const formData = new URLSearchParams();
+        const formData = new FormData();
         Object.entries(user).forEach(([key, value]) => {
             formData.append(key, value);
         });
 
-        
-        console.log("memberModifyThunk id, user" , id, user);
+        formData.append("file", file);
+
+        console.log([...formData.entries()]);
+        // console.log("memberModifyThunk formdata" , formData.toString());
         const res = await fetch(path + "members/" + id, 
             {
                 method:"put", 
-                headers : {
-                    "Content-Type" : "application/x-www-form-urlencoded"
-                },
+                // headers : {
+                //     "Content-Type" : "application/x-www-form-urlencoded"
+                // },
                 body : formData
             }
         );

@@ -9,7 +9,7 @@ function RegCon() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const {username, password, role} = useSelector(state => {
+    const {username, password, role, file} = useSelector(state => {
         return state.input.register;
     })
 
@@ -21,8 +21,19 @@ function RegCon() {
 
     const onSubmit = async(e) => {
         e.preventDefault();
-        // console.log("register submit : ", id, pwd, role);
-        const result = await dispatch(regThunk({username : username, password : password, role : role}))
+        // const formData = new FormData(e.target);
+        // console.log("regcon e target : " + e.target)
+        // console.log("regcon formdata : " + formData.toString())
+        // const {payload} = await dispatch(regThunk(formData))
+        
+        const result = await dispatch(regThunk(
+            {
+                username : username, 
+                password : password, 
+                role : role, 
+                file : file
+            }
+        ))
         // console.log("regcon result ", result.payload);
         if (result.payload === true)
             navigate("/login");
@@ -33,10 +44,20 @@ function RegCon() {
         // else
         //     alert("회원가입 실패")
     }
+
+    const onFileChange = (e) => {
+        const file = e.target.files[0];   // ⭐ 진짜 파일 객체
+        dispatch(inputSlice.actions.changeinput({
+            name: "file",
+            value: file,
+            form: "register"
+        }));
+    };
+
     return (
         <>
             <HeaderCom />
-            <RegCom onChange={onChange} onSubmit={onSubmit} username={username} password={password} role={role} />
+            <RegCom onChange={onChange} onSubmit={onSubmit} username={username} password={password} role={role} onFileChange={onFileChange} />
         </>
     )
 }

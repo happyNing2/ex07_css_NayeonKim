@@ -30,6 +30,7 @@ const PageLi = styled.li`
 `
 
 function ListCom({memberList}) {
+    console.log("ListCom memberList : " , memberList);
     return (
         <>
             <StyleContentBlock>

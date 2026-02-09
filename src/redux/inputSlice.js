@@ -4,7 +4,7 @@ const inputSlice = createSlice({
     name : "input",
     initialState : {
         login : {username : "", password : ""},
-        register : {username : "", password : "", role : ""}
+        register : {username : "", password : "", role : "", file : null}
     },
     reducers : {
         changeinput : (state, action) => {

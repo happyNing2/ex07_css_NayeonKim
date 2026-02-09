@@ -4,7 +4,7 @@ import { ProductTitle } from "./common/StyleProduct";
 
 const InfoBox = styled.div`
     width : 400px;
-    height : 350px;
+    height : 500px;
     border : 1px solid black;
     border-radius : 5px;
     margin : auto;
@@ -41,7 +41,7 @@ const MemBtn = styled.button`
 `; 
 
 
-function MemInfoCom({data, onChange, deleteMem, modifyMem}) {
+function MemInfoCom({imageUrl, data, onChange, deleteMem, modifyMem, onFileChange}) {
     return (
         <>
             <StyleContentBlock>
@@ -51,17 +51,16 @@ function MemInfoCom({data, onChange, deleteMem, modifyMem}) {
                     </ProductTitle>
                     <div>
                         <InfoBox>
-                            <form onSubmit={modifyMem}>
-                                {/* {
-                                    data && Object.keys(data).slice(1).map ( key => (
-                                        <InputWrap>
-                                            <StyledSpan>{key}</StyledSpan><br></br>
-                                            <StyledSpan>-</StyledSpan>
-                                            <StyledInput name={key} value={data[key]} onChange={onChange}></StyledInput>
-                                            <hr></hr>
-                                        </InputWrap>
-                                    ))
-                                } */}
+                            <form>
+                            {/* <form > onSubmit={modifyMem} */}
+                                {imageUrl && (
+                                                <>
+                                                    <img src={imageUrl} marginLeft="10px" width="100px" height="100px" alt="User Profile" />
+                                                    <hr />
+                                                </>
+                                            )}
+                                <StyledInput type="file" name="file" onChange={onFileChange}></StyledInput> 
+                                
                                 {
                                     data && ["username", "password", "role"].map ( key => (
                                         <InputWrap>
@@ -74,7 +73,7 @@ function MemInfoCom({data, onChange, deleteMem, modifyMem}) {
                                 }
                                 <InputWrap>
                                     <MemBtn onClick={deleteMem}>삭제</MemBtn> 
-                                    <MemBtn >수정</MemBtn> 
+                                    <MemBtn onClick={modifyMem}>수정</MemBtn> 
                                 </InputWrap>
                             </form>
                         </InfoBox>

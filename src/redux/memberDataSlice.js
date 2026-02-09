@@ -7,7 +7,7 @@ const memberDataSlice = createSlice({
     name : "member",
     initialState : {
         list : {data: null, loading : null, error : null},
-        modify : {id : "", username : "", password : "", role : ""}
+        modify : {id : "", username : "", password : "", role : "", file : null}
     },
     reducers : {
         changeinput : (state, action) => {
