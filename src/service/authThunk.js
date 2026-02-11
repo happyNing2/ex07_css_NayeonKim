@@ -1,21 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
-let data_set = [
-    {id : 1, username : "aaa", password : "aaa", role : "USER"},
-    {id : 2, username : "bbb", password : "bbb", role : "USER"},
-    {id : 3, username : "ccc", password : "ccc", role : "USER"},
-]
-
 const path = "http://localhost:10000/";
 
 export const loginThunk = createAsyncThunk(
     "loginThunk",
     async (user) => {
-        // const data = data_set.filter(data => data.id === user.id)[0];
-        // console.log("loginThunk user: ", JSON.stringify(user));
-        // console.log("loginThunk path : ", path + "members/login");
         const res = await fetch(
-            path + "members/login", 
+            path + "auth/login", 
             {
                 method : "post",
                 headers : {
@@ -24,17 +15,8 @@ export const loginThunk = createAsyncThunk(
                 body : JSON.stringify(user)
             }
         )
-        // let result = 1;
-        // if (! data) {
-        //     alert("아이디 없음")
-        //     return {result};
-        // }
-        
-        // // console.log("login Thunk get Data: ",data.password, user.password);
-        // if(data.password === user.password )
-        //     result = 0;
-        // return await {result, id : user.id} // 성공 0, 실패 1
-        console.log("loginThunk working : ", res);
+
+        // console.log("loginThunk working : ", res.json());
         return res.json();
     }
 )
@@ -82,8 +64,18 @@ export const memberThunk = createAsyncThunk(
 
 export const memberInfoThunk = createAsyncThunk(
     "memberInfoThunk",
-    async (id) => {
-        const res = await fetch(path + "members/" + id , {method:"get"});
+    async (id, {getState}) => {
+        const state = getState();
+        const token = state.auth.token;
+        const res = await fetch(
+            path + "members/" + id , 
+            {
+                method:"get",
+                headers : {
+                    "Authorization" : `Bearer ${token}`
+                }
+            }
+        );
         // console.log("memberInfoThunk res", res);
         return res.json();
         // const data = data_set.filter(data => data.id === id)[0];
@@ -96,12 +88,21 @@ export const memberInfoThunk = createAsyncThunk(
 
 export const memberDeleteThunk = createAsyncThunk(
     "memeberDeleteThunk",
-    async (user) => {
-        
+    async (user, {getState}) => {
+        const state = getState();
+        const token = state.auth.token;
         console.log("memberDeleteTHunk data : ",user);
         // return await data_set;
 
-        const res = await fetch(path + "members/" + user.id, {method:"delete", body : user.fileName});
+        const res = await fetch(path + "members/" + user.id, 
+            {
+                method:"delete", 
+                body : user.fileName,
+                headers : {
+                    "Authorization" : `Bearer ${token}`
+                }
+            }
+        );
         // console.log("memberDeleteThunk res : ", res );
         return res.json();
 
@@ -110,8 +111,10 @@ export const memberDeleteThunk = createAsyncThunk(
 
 export const memberModifyThunk = createAsyncThunk(
     "memberModifyThunk",
-    async ({id, user, file}) => {
-        
+    async ({id, user, file}, {getState}) => {
+        const state = getState();
+        const token = state.auth.token;
+
         const formData = new FormData();
         Object.entries(user).forEach(([key, value]) => {
             formData.append(key, value);
@@ -124,9 +127,10 @@ export const memberModifyThunk = createAsyncThunk(
         const res = await fetch(path + "members/" + id, 
             {
                 method:"put", 
-                // headers : {
+                headers : {
+                    "Authorization" : `Bearer ${token}`
                 //     "Content-Type" : "application/x-www-form-urlencoded"
-                // },
+                },
                 body : formData
             }
         );

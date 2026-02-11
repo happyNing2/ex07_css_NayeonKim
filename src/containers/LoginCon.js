@@ -23,13 +23,9 @@ function LoginCon() {
         e.preventDefault();
         console.log("login submit : ", username, password);
         const result = await dispatch(loginThunk({username : username, password : password}))
-        // console.log("login payload result ", result.payload);
-        // if (result.payload.result === 0) {
-        //     dispatch(login({username : username}));
-        //     navigate("/");
-        // }
-        if (result.payload === true) {
-            dispatch(login({username : username}));
+        
+        if (result.payload.token !== null) {
+            dispatch(login({username : username, token : result.payload.token}));
             navigate("/");
         }
         else {

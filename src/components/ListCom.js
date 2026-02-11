@@ -48,14 +48,15 @@ function ListCom({memberList}) {
                                 </MemListTr>
                             </thead>
                             <tbody>
-                                {memberList && memberList['list'].map( d=> (
+                                {/* {memberList && memberList['list'].map( d=> ( */}
+                                {memberList?.list?.map( d =>
                                     <MemListTr id={d.id} >
                                         <td><Link to={"/memberinfo?id=" + d.id}>{d.username}</Link></td>
                                         {/* <td><Link to={"/memberinfo/" + d.id}>{d.username}</Link></td> */}
                                         <td>{d.password}</td>
                                         <td>{d.role}</td>
                                     </MemListTr>
-                                )
+                                
                                 )}
                             </tbody>
                         </MemListTable>

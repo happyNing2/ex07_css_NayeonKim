@@ -37,7 +37,7 @@ function MemInfoCon(){
             const memberData = await dispatch(memberInfoThunk(user_id));
             console.log("fileName : ", memberData);
             if (memberData?.payload.fileName){
-                const res = await fetch(`${path}/members/${memberData.payload.fileName}/image`);
+                const res = await fetch(`${path}/members/image/${memberData.payload.fileName}`);
                 // console.log("res : " + res.json())
                 setImageUrl(URL.createObjectURL(await res.blob()))
                 // console.log(memberData.fileName);

@@ -5,6 +5,7 @@ import { createLoadingReducers } from "./commonLoadingHandlers";
 const initialState = {
     isLoggedIn : false, 
     username : null,
+    token : null,
     loading : false, error : null, result : 0
 }
 const savedAuth = sessionStorage.getItem("auth");
@@ -13,8 +14,11 @@ const authSlice = createSlice({
     initialState : savedAuth ? JSON.parse(savedAuth) : initialState,
     reducers : {
         login : (state, action) => {
+            // console.log("authSlice login : ", action.payload.username);
+            // console.log("authSlice login : ", action.payload.token);
             state.isLoggedIn = true;
             state.username = action.payload.username;
+            state.token = action.payload.token;
             // console.log("login authSlice", state);
             sessionStorage.setItem("auth", JSON.stringify({...state}))
         },
