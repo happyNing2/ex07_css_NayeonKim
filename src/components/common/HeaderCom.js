@@ -31,7 +31,8 @@ const StyleNav = styled.nav`
 `;
 
 function HeaderCom() {
-    const {username, isLoggedIn} = useSelector(state => {
+    const {username, isLoggedIn, role} = useSelector(state => {
+        console.log(state);
         return state.auth;
     })
     const dispatch = useDispatch();
@@ -51,6 +52,10 @@ function HeaderCom() {
                                 <li><Link to="/">사료</Link></li>
                                 <li><Link to="/">간식</Link></li>
                                 <li><Link to="/list">LIST</Link></li>
+
+                                {role === 'ROLE_ADMIN' && <>
+                                    <li><Link to="/">ADMIN</Link></li>
+                                </>}
                             </ul>
                             <ul>
                                 {isLoggedIn 
