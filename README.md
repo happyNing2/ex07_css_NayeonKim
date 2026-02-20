@@ -1,6 +1,8 @@
 # ex07_css_nayeonkim
 
-## 퀴즈 기능 소개
+## 과제 1
+<details>
+  <summary>과제 1 기능 소개</summary>
 
 ### 1. Quiz 1
 <img width="1650" height="521" alt="image" src="https://github.com/user-attachments/assets/d0fc495a-8d79-43cd-bdd7-179536258cc3" />
@@ -57,7 +59,44 @@ id값이 변해도 해당 개인 정보 페이지에 오류 없이 남아 있음
 <img width="1510" height="562" alt="image" src="https://github.com/user-attachments/assets/fd8825a6-82c9-4f02-a6ed-066b4f140a33" />
 
 LIST에서도 수정된 모습 확인가능
+  
+</details>
 
+## 과제 2
+
+### 1. 게시판 리스트
+<img width="1347" height="565" alt="image" src="https://github.com/user-attachments/assets/145dc361-13ef-4d4b-a6e5-c2cbc688b32a" />
+
+로그인 전
+
+<img width="1342" height="577" alt="image" src="https://github.com/user-attachments/assets/e6bd82b1-188d-47f1-8c89-4c7002c48fc6" />
+
+로그인 후 글 작성 버튼 생성
+
+### 2. 게시판 글 작성
+<img width="1276" height="890" alt="image" src="https://github.com/user-attachments/assets/d75aa9a0-55ac-4f6a-bc20-aaf165b7eb3d" />
+
+글 작성 화면
+
+<img width="1320" height="602" alt="image" src="https://github.com/user-attachments/assets/f3a4da6d-9cb2-4aa5-8a3a-a9c39d85c7bd" />
+
+글 작성 후 게시판 리스트에 생성된 모습
+
+로그인하지 않고 /board/post에 접속할 경우, 에러 처리를 통해 게시글이 DB에 올라가지 않음.
+
+
+### 3. 게시판 글 조회
+<img width="1286" height="646" alt="image" src="https://github.com/user-attachments/assets/f0338cfe-c617-47d2-a6af-616c1b9bb989" />
+
+멤버 ccc가 조회해서 조회수 1 오름
+
+<img width="1290" height="700" alt="image" src="https://github.com/user-attachments/assets/4d02416b-9d6b-4070-8715-cf958cac496c" />
+
+멤버 bbb가 조회하여 조회수 1 오름
+
+로그인 하지 않아도 조회수는 오르게 만들었으나, IP별 처리 등 하지 않아서 누를 때마다 조회수가 2씩 올라감.
+
+<img width="1307" height="717" alt="image" src="https://github.com/user-attachments/assets/b72a478d-a417-4647-9f78-b8f275b40707" />
 
 
 
