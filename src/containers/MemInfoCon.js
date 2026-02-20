@@ -34,14 +34,20 @@ function MemInfoCon(){
             navigate("/login");
         }
         const getData = async () => {
-            const memberData = await dispatch(memberInfoThunk(user_id));
-            console.log("fileName : ", memberData);
-            if (memberData?.payload.fileName){
-                const res = await fetch(`${path}/members/image/${memberData.payload.fileName}`);
-                // console.log("res : " + res.json())
-                setImageUrl(URL.createObjectURL(await res.blob()))
-                // console.log(memberData.fileName);
+            try {
+                const memberData = await dispatch(memberInfoThunk(user_id));
+                console.log("fileName : ", memberData);
+                if (memberData?.payload.fileName){
+                    const res = await fetch(`${path}/members/image/${memberData.payload.fileName}`);
+                    // console.log("res : " + res.json())
+                    setImageUrl(URL.createObjectURL(await res.blob()))
+                    // console.log(memberData.fileName);
+                }
+            } catch(error) {
+                alert("허가되지 않은 접근입니다.")
+                navigate("/list")
             }
+            
         }
         getData();
     }, [isLoggedIn, navigate, user_id, dispatch]);

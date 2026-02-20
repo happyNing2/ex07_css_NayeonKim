@@ -76,13 +76,8 @@ export const memberInfoThunk = createAsyncThunk(
                 }
             }
         );
-        // console.log("memberInfoThunk res", res);
-        return res.json();
-        // const data = data_set.filter(data => data.id === id)[0];
-        // console.log("memberInfoThunk memberinfo data : ", data)
-        // console.log("memberinfoThunk state.member", state.member)
-        // return await data;
-        
+
+        return res.json();  
     }
 )
 
@@ -138,20 +133,67 @@ export const memberModifyThunk = createAsyncThunk(
         return res.json();
     }
 )
-        // data index 
-        // for (let idx=0; idx < data_set.length; idx++) {
-        //     // console.log("idx : ", idx);
-        //     if (data_set[idx]['id'] === id){
-        //         // console.log("해당 id, idx값 : ", id, idx);
-        //         data_set[idx] = {
-        //             ...data_set[idx],
-        //             id : user.id,
-        //             password :user.password,
-        //             role : user.role
-        //         }
-        //         // console.log("실행 1 완료 : ", data_set)
-        //     }
 
-            
-        // }
-        // return await [...data_set];
+// 게시글 리스트 불러오기
+export const postThunk = createAsyncThunk(
+    "postThunk",
+    async () => { // 나중에 pagenation 추가
+        // console.log("postThunk start : ")
+        // const res = await fetch(path + "members?start=" + start, {method:"get"});
+        const res = await fetch(path + "post",
+            {
+                method : "get"
+            }
+        )
+        const data = await res.json();
+        // console.log("postThunk : " +data);
+        return data;
+    }
+)
+
+export const postInsertThunk = createAsyncThunk(
+    "postInsertThunk",
+    async (postData, {getState}) => {
+        const state = getState();
+        const token = state.auth.token;
+
+        const formData = new FormData();
+        Object.entries(postData).forEach(([key, value]) => {
+            formData.append(key, value);
+        });
+        // console.log("postInsertThunk formdata" , formData.toString());
+        const res = await fetch(path + "post",
+            {
+                method : "post",
+                headers : {
+                    "Authorization" : `Bearer ${token}`
+                },
+                body : formData
+            }
+        )
+        const data = await res.json();
+        // console.log("postInsertThunk: " + res.json());
+        return data;
+    }
+)
+
+export const postOneThunk = createAsyncThunk(
+    "postOneThunk",
+    async (queryData, {getState}) => {
+        const state = getState();
+        const token = state.auth.token;
+
+        const res = await fetch(
+            path + "post/" + queryData.number + "?username=" + queryData.username,
+            {
+                method : "get",
+                headers : {
+                    "Authorization" : `Bearer ${token}`
+                }
+            }
+        )
+        const json_res = await res.json();
+        return json_res;
+
+    }
+)
