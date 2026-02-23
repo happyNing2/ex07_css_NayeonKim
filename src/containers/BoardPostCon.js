@@ -3,7 +3,7 @@ import BoardPostCom from "../components/BoardPostCom";
 import HeaderCom from "../components/common/HeaderCom";
 import { useNavigate } from "react-router-dom";
 import postSlice from "../redux/postSlice";
-import { postInsertThunk } from "../service/authThunk";
+import { postInsertThunk } from "../service/postThunk";
 
 function BoardPostCon(){
     const dispatch = useDispatch();
@@ -15,11 +15,6 @@ function BoardPostCon(){
         // console.log(state.post.post);
         return state.post.post.data;
     })
-    
-    // const data = useSelector(state => {
-    //     console.log(state.post.post);
-    //     return state.post.post;
-    // })
 
     const onChange = (e) => {
         const {name, value} = e.target;

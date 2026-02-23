@@ -9,6 +9,7 @@ import MemInfoCon from './containers/MemInfoCon';
 import BoardCon from './containers/BoardCon';
 import BoardPostCon from './containers/BoardPostCon';
 import BoardOneCon from './containers/BoardOneCon';
+import BoardModCon from './containers/BoardModCon';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="list" element={<BoardCon />}></Route>
         <Route path="post" element={<BoardPostCon />}></Route>
         <Route path=':number' element={<BoardOneCon />}></Route>
+        <Route path="modify/:number" element={<BoardModCon />}></Route>
       </Route>
       
     </Routes>

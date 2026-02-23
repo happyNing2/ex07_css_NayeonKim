@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import BoardOneCom from "../components/BoardOneCom";
 import HeaderCom from "../components/common/HeaderCom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { postOneThunk } from "../service/authThunk";
+import { PostDeleteThunk, postOneThunk } from "../service/postThunk";
 
 function BoardOneCon(){
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     const {number} = useParams();
     const { username, isLoggedIn } = useSelector((state) => state.auth);
@@ -25,15 +26,26 @@ function BoardOneCon(){
         // console.log(state.post.one.data)
         return state.post.one.data;
     })
-    //  console.log("data : " , data);
-    
 
+    const deletePost = async (e) => {
+        e.preventDefault();
+        try {
+            await dispatch(PostDeleteThunk({
+                number : number,
+                username : username
+            }))
+            navigate("/board/list");
+        }
+        catch(error) {
+            alert(error);
+            navigate("/board/" + number);
+        }
+    }
     
-
     return(
         <>
             <HeaderCom />
-            <BoardOneCom data={data} isLoggedIn={isLoggedIn}/>
+            <BoardOneCom data={data} isLoggedIn={isLoggedIn} deletePost={deletePost}/>
         </>
     )
 }

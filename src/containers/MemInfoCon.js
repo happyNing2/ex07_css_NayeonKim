@@ -26,10 +26,8 @@ function MemInfoCon(){
     const user_id = params.get("id");
     const [imageUrl, setImageUrl] = useState();
     const [file, setFile] = useState(null);
-    // const {username} = useParams();
-    // console.log("id : ", user_id);
+
     useEffect( () => {
-        // console.log("use effect");
         if (!isLoggedIn) {
             navigate("/login");
         }
@@ -38,10 +36,8 @@ function MemInfoCon(){
                 const memberData = await dispatch(memberInfoThunk(user_id));
                 console.log("fileName : ", memberData);
                 if (memberData?.payload.fileName){
-                    const res = await fetch(`${path}/members/image/${memberData.payload.fileName}`);
-                    // console.log("res : " + res.json())
+                    const res = await fetch(`${path}/members/image/${memberData.payload.fileName}`);                    
                     setImageUrl(URL.createObjectURL(await res.blob()))
-                    // console.log(memberData.fileName);
                 }
             } catch(error) {
                 alert("허가되지 않은 접근입니다.")
@@ -66,7 +62,7 @@ function MemInfoCon(){
     //onSubmit
     const deleteMem = async (e) => {
         e.preventDefault();
-        console.log("meminfocon del : ", data)
+        // console.log("meminfocon del : ", data)
         // await dispatch(memberDeleteThunk(data['id'], data['fileName']));
         await dispatch(memberDeleteThunk(data));
         navigate("/list");
@@ -74,7 +70,7 @@ function MemInfoCon(){
 
     const modifyMem = async (e) => {
         e.preventDefault();
-        console.log("button user_id, data : ", user_id, data);
+        // console.log("button user_id, data : ", user_id, data);
 
         await dispatch(memberModifyThunk({
             id: user_id,

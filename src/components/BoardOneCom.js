@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { StyleContentBlock, StyleContentWrap } from "./common/StyleContent";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ContentDiv = styled.div`
     width : 80%;
@@ -47,16 +49,29 @@ const ButtonWrap = styled.div`
     justify-content: flex-end;
     margin-top: 10px;
 `;
-const ModifyPostBtn = styled.button`
+const PostBtn = styled.button`
     right : 0px;
+    width : 100px; height : 30px;
+    border : none; border-radius : 5px;
+    font-size : 15px; font-weight : bold;
+    cursor : pointer;
+    background-color : black;
+    color : white;
+    &:hover {
+        background-color : gray;
+    }
 `
 const formatDate = (dateString) => {
     if (!dateString) return "";
     return dateString.replace("T", " ").substring(0, 16);
 };
 
-function BoardOneCom({data, isLoggedIn}){
-
+function BoardOneCom({data, isLoggedIn, deletePost}){
+    const navigate = useNavigate();
+    const {username} = useSelector(state => {
+        return state.auth;
+    })
+    const {number} = useParams();
     return (
         <>
             <StyleContentBlock>
@@ -92,15 +107,16 @@ function BoardOneCom({data, isLoggedIn}){
                                 </PostInfoTr>
                             </tbody>
                         </PostTable>
-                        {isLoggedIn
-                            ? <>
+                        {
+                            data && data.memberUserName === username ?
+                            <>
                                 <ButtonWrap>
                                     {/* onClick={ () => navigate("/board/post")} */}
-                                    <ModifyPostBtn>글 수정하기</ModifyPostBtn>
+                                    <PostBtn style={{ marginRight: "10px" }} onClick={deletePost}>삭제하기</PostBtn>
+                                    <PostBtn onClick={() => navigate("/board/modify/" + number)}>수정하기</PostBtn>
                                 </ButtonWrap>
-                                
-                            </>
-                            : <></>
+                            </>:
+                            <></>
                         }
                     </ContentDiv>
                     

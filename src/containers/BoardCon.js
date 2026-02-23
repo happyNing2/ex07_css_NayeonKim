@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import BoardCom from "../components/BoardCom";
 import HeaderCom from "../components/common/HeaderCom";
 import { useEffect } from "react";
-import { postThunk } from "../service/authThunk";
+import { postThunk } from "../service/postThunk";
 
 function BoardCon(){
     const dispatch = useDispatch();

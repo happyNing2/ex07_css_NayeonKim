@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { postInsertThunk, postOneThunk, postThunk } from "../service/authThunk";
+import { PostDeleteThunk, postInsertThunk, postModifyThunk, postOneThunk, postThunk } from "../service/postThunk";
 import { createLoadingReducers } from "./commonLoadingHandlers";
 import { changeinput } from "./inputSlice";
 
@@ -8,7 +8,9 @@ const postSlice = createSlice({
     initialState : {
         list : {data : null, loading : null, error : null}, // 게시글 리스트
         post : {data : {title : null, content : null}, loading : null, error : null}, // 글 작성
-        one : {data : {title : null, content : null, postCount : null}, loading :null, error : null} // 글 조회
+        one : {data : {title : null, content : null, postCount : null}, loading :null, error : null}, // 글 조회
+        delete : {loading : null, error : null},
+        modify : {data : {title : null, content : null}, loading : null, error : null}
     },
     reducers : {
         changeinput: (state, action) => {
@@ -36,10 +38,24 @@ const postSlice = createSlice({
         builder
         .addCase(postOneThunk.fulfilled, (state, action) => {
             state.one.data = action.payload;
-            state.post.loading = false;
-            state.post.error = null;
+            state.one.loading = false;
+            state.one.error = null;
         })
         createLoadingReducers(builder, postOneThunk)
+
+        builder
+        .addCase(PostDeleteThunk.fulfilled, (state, action) => {
+            state.delete.loading = false;
+            state.delete.error = null;
+        })
+        createLoadingReducers(builder, PostDeleteThunk)
+        
+        builder
+        .addCase(postModifyThunk.fulfilled, (state, action) => {
+            state.one.data = action.payload;
+            state.one.loading = false;
+            state.one.error = null;
+        })
     }
 })
 export default postSlice;

@@ -117,7 +117,7 @@ export const memberModifyThunk = createAsyncThunk(
 
         formData.append("file", file);
 
-        console.log([...formData.entries()]);
+        // console.log([...formData.entries()]);
         // console.log("memberModifyThunk formdata" , formData.toString());
         const res = await fetch(path + "members/" + id, 
             {
@@ -131,69 +131,5 @@ export const memberModifyThunk = createAsyncThunk(
         );
         
         return res.json();
-    }
-)
-
-// 게시글 리스트 불러오기
-export const postThunk = createAsyncThunk(
-    "postThunk",
-    async () => { // 나중에 pagenation 추가
-        // console.log("postThunk start : ")
-        // const res = await fetch(path + "members?start=" + start, {method:"get"});
-        const res = await fetch(path + "post",
-            {
-                method : "get"
-            }
-        )
-        const data = await res.json();
-        // console.log("postThunk : " +data);
-        return data;
-    }
-)
-
-export const postInsertThunk = createAsyncThunk(
-    "postInsertThunk",
-    async (postData, {getState}) => {
-        const state = getState();
-        const token = state.auth.token;
-
-        const formData = new FormData();
-        Object.entries(postData).forEach(([key, value]) => {
-            formData.append(key, value);
-        });
-        // console.log("postInsertThunk formdata" , formData.toString());
-        const res = await fetch(path + "post",
-            {
-                method : "post",
-                headers : {
-                    "Authorization" : `Bearer ${token}`
-                },
-                body : formData
-            }
-        )
-        const data = await res.json();
-        // console.log("postInsertThunk: " + res.json());
-        return data;
-    }
-)
-
-export const postOneThunk = createAsyncThunk(
-    "postOneThunk",
-    async (queryData, {getState}) => {
-        const state = getState();
-        const token = state.auth.token;
-
-        const res = await fetch(
-            path + "post/" + queryData.number + "?username=" + queryData.username,
-            {
-                method : "get",
-                headers : {
-                    "Authorization" : `Bearer ${token}`
-                }
-            }
-        )
-        const json_res = await res.json();
-        return json_res;
-
     }
 )

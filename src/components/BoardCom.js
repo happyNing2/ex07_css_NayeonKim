@@ -33,6 +33,15 @@ const ButtonWrap = styled.div`
 `;
 const NewPostBtn = styled.button`
     right : 0px;
+    width : 100px; height : 30px;
+    border : none; border-radius : 5px;
+    font-size : 15px; font-weight : bold;
+    cursor : pointer;
+    background-color : black;
+    color : white;
+    &:hover {
+        background-color : gray;
+    }
 `
 
 const formatDate = (dateString) => {
