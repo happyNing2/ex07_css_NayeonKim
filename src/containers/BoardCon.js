@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import BoardCom from "../components/BoardCom";
 import HeaderCom from "../components/common/HeaderCom";
 import { useEffect } from "react";
-import { postThunk } from "../service/postThunk";
+import { postLikedThunk, postThunk } from "../service/postThunk";
 
 function BoardCon(){
     const dispatch = useDispatch();
@@ -12,14 +12,18 @@ function BoardCon(){
     }, [dispatch]);
 
     const postList = useSelector((state) => {
-        // console.log("postcon state : ", state.post.list.data);
+        // console.log(state.post.list.data)
         return state.post.list.data;
     })
+
+    const onLiked = (like) => {
+        dispatch(postLikedThunk(like))
+    }
 
     return (
         <>
             <HeaderCom />
-            <BoardCom postList={postList}/>
+            <BoardCom onLiked={onLiked} postList={postList}/>
         </>
     )
 }

@@ -49,14 +49,14 @@ const formatDate = (dateString) => {
     return dateString.replace("T", " ").substring(0, 16);
 };
 
-function BoardCom({postList}){
+function BoardCom({onLiked, postList}){
     const {username, isLoggedIn, role} = useSelector(state => {
         return state.auth;
         }    
     )
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // console.log("postCom postlist : ", postList);
+    console.log("postCom postlist : ", postList);
     return (
         <>
             <StyleContentBlock>
@@ -70,8 +70,10 @@ function BoardCom({postList}){
                                 <PostListThTr>
                                     <th>#</th>
                                     <th width="60%">제 목</th>
-                                    <th>작성일</th>
+                                    <th>좋아요</th>
+                                    <th>좋아요 수</th>
                                     <th>수정일</th>
+                                    
                                 </PostListThTr>
                             </thead>
                             <tbody>
@@ -80,7 +82,9 @@ function BoardCom({postList}){
                                         <PostListTbTr id={d.number}>
                                             <td>{d.number}</td>
                                             <td><Link to={"/board/" + d.number}>{d.title}</Link></td>
-                                            <td>{formatDate(d.createAt)}</td>
+                                            {/* <td>{formatDate(d.createAt)}</td> */}
+                                            <td onClick={() => onLiked({postId:d.number, liked : d.liked})}>{d.liked ? "❤️" : "🤍"}</td>
+                                            <td>{d.likedCount}</td>
                                             <td>{formatDate(d.updateTime)}</td>
                                         </PostListTbTr>
                                     )

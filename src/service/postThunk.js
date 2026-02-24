@@ -5,16 +5,20 @@ const path = "http://localhost:10000/";
 // 게시글 리스트 불러오기
 export const postThunk = createAsyncThunk(
     "postThunk",
-    async () => { // 나중에 pagenation 추가
+    async (_, {getState}) => { // 나중에 pagenation 추가
         // console.log("postThunk start : ")
         // const res = await fetch(path + "members?start=" + start, {method:"get"});
+        const state = getState();
+        const token = state.auth.token;
         const res = await fetch(path + "post",
             {
-                method : "get"
+                method : "get",
+                headers : {
+                    "Authorization" : `Bearer ${token}`
+                },
             }
         )
         const data = await res.json();
-        // console.log("postThunk : " +data);
         return data;
     }
 )
@@ -115,5 +119,35 @@ export const postModifyThunk = createAsyncThunk(
             throw new Error("게시글 수정 권한이 없습니다")
         const json_res = await res.json();
         return json_res;
+    }
+)
+
+export const postLikedThunk = createAsyncThunk(
+    "postLikedThunk",
+    async (like, {getState}) => {
+        // const token = sessionStorage.getItem("token");
+        const state = getState();
+        const token = state.auth.token;
+
+        let res;
+        if (like.liked){ // 좋아요 삭제
+            res = await fetch(`${path}post/${like.postId}/like`,{
+                method : "delete",
+                headers : {
+                    "Authorization" : `Bearer ${token}`
+                }
+            })
+        } else { // 좋아요
+            res = await fetch(`${path}post/${like.postId}/like`,{
+                method : "post",
+                headers : {
+                    "Authorization" : `Bearer ${token}`
+                }
+            })
+        }
+
+        if (res.ok)
+            return {liked : !like.liked, postId : like.postId};
+        throw new Error("좋아요 처리 문제 발생");
     }
 )
