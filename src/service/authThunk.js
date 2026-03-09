@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
-const path = "http://localhost:10000/";
+// const path = "http://localhost:8080/";
+const path = "/api/";
 
 export const loginThunk = createAsyncThunk(
     "loginThunk",

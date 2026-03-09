@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
-const path = "http://localhost:10000/";
+// const path = "http://localhost:8080/";
+const path = "/api/";
 
 // 게시글 리스트 불러오기
 export const postThunk = createAsyncThunk(
